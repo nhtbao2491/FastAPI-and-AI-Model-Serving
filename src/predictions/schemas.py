@@ -13,3 +13,4 @@ class PredictionRequest(BaseModel):
 
 class PredictionResponse(BaseModel):
     price: float = Field(..., examples=133232.33, description="Giá nhà dự đoán")
+    

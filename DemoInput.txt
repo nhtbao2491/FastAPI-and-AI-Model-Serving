@@ -1,0 +1,23 @@
+[
+ {
+  "area":120,
+  "bedrooms":3,
+  "bathrooms":2,
+  "floors":1,
+  "property_type":"villa",
+  "furniture":"full",
+  "legal_status":"has_title",
+  "distance_to_center":5
+ },
+
+ {
+  "area":125,
+  "bedrooms":4,
+  "bathrooms":3,
+  "floors":2,
+  "property_type":"shophouse",
+  "furniture":"basic",
+  "legal_status":"contract",
+  "distance_to_center":30
+ }
+]
