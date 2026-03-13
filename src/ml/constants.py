@@ -1,6 +1,6 @@
 from pathlib import Path
 
-MODEL_PATH = Path("models/house_price_model.pkl")
+MODEL_PATH = Path("models/model.pkl")
 
 MODEL_NAME = "house_price_model"
 

@@ -15,4 +15,4 @@ app_run.include_router(
 
 @app_run.get("/")
 def root():
-    return {"FastAPI và AI Model Serving đang hoạt động"}
+    return {"msg": "FastAPI và AI Model Serving đang hoạt động"}
