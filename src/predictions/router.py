@@ -1,11 +1,11 @@
 from fastapi import APIRouter
 from .schemas import PredictionRequest, PredictionResponse
-from .service import make_prediction
+from .service import make_prediction, make_batch_prediction
 from typing import List
 # from src.ml.model import predict_price
 router = APIRouter()
 
-@router.post("/predict", )
+@router.post("/predict")
 def predict(data: List[PredictionRequest]):
     input_data = []
     # for item in data:
@@ -24,3 +24,8 @@ def predict(data: List[PredictionRequest]):
     return {
         "prediction" : prediction
     }
+
+@router.post("/predict_batch")
+def predict_batch(data: List[PredictionRequest]):
+    predictions = make_batch_prediction(data)
+    return predictions

@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+from typing import List
 
 class PredictionRequest(BaseModel):
     area: float = Field(..., examples=[120.3], description="Diện tích nhà (m2)")
@@ -13,4 +14,7 @@ class PredictionRequest(BaseModel):
 
 class PredictionResponse(BaseModel):
     price: float = Field(..., examples=[133232.33], description="Giá nhà dự đoán")
-    
+
+
+BatchRequest = List[PredictionRequest]
+BatchResponse = List[PredictionResponse]

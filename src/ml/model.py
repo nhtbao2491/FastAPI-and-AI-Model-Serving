@@ -14,8 +14,14 @@ processor = joblib.load(PROCESSOR_PATH)
 #     prediction =  model_load.predict(input_data)
 #     return float(prediction[0])
 
-def predict_price(input_data) -> float:
+def predict_price(input_data):
     pred = pd.DataFrame(input_data)
     pred = processor.transform(pred)
     prediction =  model_load.predict(pred)
     return float(prediction[0])
+
+def predict_batch_price(df: pd.DataFrame):
+    input = processor.transform(df)
+    preds = model_load.predict(input)
+    prices = np.expm1(preds)
+    return prices
