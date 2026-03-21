@@ -25,3 +25,22 @@ def predict_batch_price(df: pd.DataFrame):
     preds = model_load.predict(input)
     prices = np.expm1(preds)
     return prices
+
+def predict_price_batch(list_features: list) -> list:
+    data = []
+    for f in list_features:
+        data.append({
+            "area": f.area,
+            "bedrooms": f.bedrooms,
+            "bathrooms": f.bathrooms,
+            "floors": f.floors,
+            "property_type": f.property_type,
+            "furniture": f.furniture,
+            "legal_status": f.legal_status,
+            "distance_to_center": f.distance_to_center
+        })
+    df = pd.DataFrame(data)
+    transformed = processor.transform(df)
+    predictions = model_load.predict(transformed)
+    prices = np.expm1(predictions)
+    return prices.tolist()

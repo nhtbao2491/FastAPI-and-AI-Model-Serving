@@ -41,4 +41,3 @@ def make_batch_prediction(requests: List[PredictionRequest]):
             "price": p
         })
     return ls_results
-        
