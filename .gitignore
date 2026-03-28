@@ -9,3 +9,6 @@ __pycache__
 
 # Files .json
 *.json
+
+# Folder ex
+Mini_exercises

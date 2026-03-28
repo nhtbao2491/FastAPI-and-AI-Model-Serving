@@ -4,7 +4,7 @@ import json
 import time
 
 URL = "http://127.0.0.1:8000/API/v1/predict"
-MAX_CONCURRENT_REQUESTS = 1000
+MAX_CONCURRENT_REQUESTS = 100
 
 with open("1000_Examples.json", "r", encoding="utf-8") as f:
     data = json.load(f)

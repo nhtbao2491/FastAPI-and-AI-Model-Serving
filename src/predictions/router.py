@@ -7,15 +7,10 @@ from typing import List
 router = APIRouter()
 
 
-@router.post("/predict")
+@router.post("/predict", response_model= List[PredictionResponse])
 async def predict(data: List[PredictionRequest]):
     if not data:
         return {"prediction": []}
     # Nếu nhiều sample → batch
     result = await run_in_threadpool(make_batch_prediction, data)
     return {"prediction": result}
-
-@router.post("/predict_batch")
-def predict_batch(data: List[PredictionRequest]):
-    predictions = make_batch_prediction(data)
-    return predictions
