@@ -151,7 +151,7 @@
                 distance_to_center: parseInt(document.querySelector('[name="distance_to_center"]').value)
             }];
 
-            const res = await fetch("http://localhost:8000/API/v1/predict", {
+            const res = await fetch("/API/v1/predict", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
