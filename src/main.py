@@ -4,6 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from fastapi import FastAPI, Request
 import time
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 app_run = FastAPI(
     title = "FastAPI và AI Model Serving",
@@ -11,7 +14,7 @@ app_run = FastAPI(
     version = "1.0"
 )
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 app_run.include_router(
     router = router,
