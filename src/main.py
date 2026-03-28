@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from src.predictions.router import router
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.templating import Jinja2Templates
 from fastapi import FastAPI, Request
 import time
 
@@ -9,6 +10,8 @@ app_run = FastAPI(
     description = "API dự đoán giá nhà",
     version = "1.0"
 )
+
+templates = Jinja2Templates(directory="templates")
 
 app_run.include_router(
     router = router,
@@ -40,5 +43,5 @@ async def log_time(request: Request, call_next):
     return response
 # ===== API =====
 @app_run.get("/")
-def home():
-    return {"msg": "Hệ thống đang chạy !!"}
+def home(request: Request):
+    return templates.TemplateResponse("predict.html", {"request": request})
