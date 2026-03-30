@@ -25,8 +25,9 @@ app_run.include_router(
 # ===== CORS =====
 # Sử dụng cầu lệnh python -m http.server 5500 trên terminal thứ 2 để chạy
 origins = [
-    "http://localhost:5500",
-    "https://fastapi-and-ai-model-serving.onrender.com",
+    "http://localhost:5500"
+    #"https://fastapi-and-ai-model-serving.onrender.com",
+    #["*"],
 ]
 app_run.add_middleware(
     CORSMiddleware,

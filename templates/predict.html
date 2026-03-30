@@ -167,7 +167,7 @@
             }
             const result = await res.json();
 
-            const item = result.prediction[0];
+            const item = result[0];
             let message = "";
             message += `Input:\n`
             message += `Area: ${item.features.area}\n`;
