@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from src.predictions.router import router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
@@ -47,6 +48,6 @@ async def log_time(request: Request, call_next):
     print(f"{request.method}, {request.url} - {duration:.4f}s")
     return response
 # ===== API =====
-@app_run.get("/")
+@app_run.get("/", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse("predict.html", {"request": request})
