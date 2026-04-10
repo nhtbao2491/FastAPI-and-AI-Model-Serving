@@ -32,7 +32,6 @@ for _ in range(n_requests):
     }
     data.append(item)
 
-# Xuất ra file JSON
 with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
 

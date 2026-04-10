@@ -22,7 +22,6 @@ with open(INPUT_PATH, "r", encoding="utf-8") as f:
 
 semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
 
-# Truyền client vào để dùng chung
 async def send_request(client, sample, index):
     async with semaphore:
         try:
@@ -52,7 +51,6 @@ async def main():
 
     start_time = time.time()
 
-    # Tạo 1 client duy nhất
     async with httpx.AsyncClient(timeout=60.0) as client:
         tasks = []
         for i, sample in enumerate(data):
