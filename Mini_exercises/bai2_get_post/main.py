@@ -3,6 +3,12 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+# ===== BÀI 1: HELLO WORLD =====
+@app.get("/")
+def read_root():
+    return {"message": "Hello World"}
+
+
 # ===== GET =====
 @app.get("/hello")
 def say_hello(name: str, age: int):
@@ -12,7 +18,7 @@ def say_hello(name: str, age: int):
     }
 
 
-# ===== POST (query params - cách 1) =====
+# ===== POST (query params) =====
 @app.post("/sum")
 def calculate_sum(a: int, b: int):
     return {
@@ -22,11 +28,10 @@ def calculate_sum(a: int, b: int):
     }
 
 
-# ===== POST (body - cách 2) =====
+# =====POST (body) =====
 class SumRequest(BaseModel):
     a: int
     b: int
-
 
 @app.post("/sum-body")
 def calculate_sum_body(data: SumRequest):
