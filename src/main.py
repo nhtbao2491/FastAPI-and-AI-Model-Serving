@@ -35,7 +35,7 @@ app_run.include_router(
     tags=["Predictions"]
 )
 
-# ===== CORS =====
+
 origins = [
     "http://localhost:5500"
 ]
@@ -47,7 +47,7 @@ app_run.add_middleware(
     allow_headers=["*"],
 )
 
-# ===== Custom Middleware: log time + cache header =====
+
 @app_run.middleware("http")
 async def log_time(request: Request, call_next):
     start = time.time()
@@ -58,12 +58,12 @@ async def log_time(request: Request, call_next):
     print(f"{request.method} {request.url} - {duration:.4f}s")
     return response
 
-# ===== Pages =====
+
 @app_run.get("/", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse(request=request, name="predict.html")
 
-# ===== Cache Monitoring =====
+
 @app_run.get("/API/v1/cache/info", tags=["Cache"])
 def cache_info():
     """Xem trạng thái cache hiện tại."""
