@@ -9,16 +9,12 @@ from cachetools import TTLCache
 from threading import Lock
 from typing import List, Optional, Any
 
-
-# ── Config ──────────────────────────────────────────────────────────────────
-CACHE_MAX_SIZE = 512    # tối đa 512 entry trong RAM
-CACHE_TTL_SECONDS = 300 # cache sống 5 phút
+CACHE_MAX_SIZE = 512    
+CACHE_TTL_SECONDS = 300 
 
 _cache: TTLCache = TTLCache(maxsize=CACHE_MAX_SIZE, ttl=CACHE_TTL_SECONDS)
-_lock = Lock()          # TTLCache không thread-safe, cần lock
+_lock = Lock()         
 
-
-# ── Helpers ──────────────────────────────────────────────────────────────────
 def _make_cache_key(requests: List[Any]) -> str:
     """
     Tạo cache key từ danh sách request.
@@ -32,7 +28,6 @@ def _make_cache_key(requests: List[Any]) -> str:
     return hashlib.sha256(payload.encode()).hexdigest()
 
 
-# ── Public API ────────────────────────────────────────────────────────────────
 def get_cached(requests: List[Any]) -> Optional[List[dict]]:
     """
     Trả về kết quả cache nếu có, None nếu không có.

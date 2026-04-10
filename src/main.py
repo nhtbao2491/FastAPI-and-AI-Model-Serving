@@ -53,7 +53,7 @@ async def log_time(request: Request, call_next):
     start = time.time()
     response = await call_next(request)
     duration = time.time() - start
-    # Header cho client biết response time
+    
     response.headers["X-Response-Time"] = f"{duration:.4f}s"
     print(f"{request.method} {request.url} - {duration:.4f}s")
     return response

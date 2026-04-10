@@ -12,16 +12,12 @@ router = APIRouter()
 async def predict(data: List[PredictionRequest]):
     if not data:
         return []
-
-    # ── 1. Kiểm tra cache ──────────────────────────────────────────────────
     cached = get_cached(data)
     if cached is not None:
         return cached
 
-    # ── 2. Cache miss → chạy model ────────────────────────────────────────
     result = await run_in_threadpool(make_batch_prediction, data)
 
-    # ── 3. Lưu vào cache ──────────────────────────────────────────────────
     set_cached(data, result)
 
     return result

@@ -4,20 +4,17 @@ from typing import List
 
 app = FastAPI()
 
-# ===== SCHEMA =====
 class PredictionRequest(BaseModel):
     area: float = Field(gt=0)
     bedrooms: int = Field(ge=0)
     bathrooms: int = Field(ge=0)
 
-
-# ===== API =====
 @app.post("/predict")
 def predict(requests: List[PredictionRequest]):
     results = []
 
     for r in requests:
-        # fake model (để test)
+     
         price = r.area * 1000 + r.bedrooms * 500 + r.bathrooms * 300
 
         results.append({
