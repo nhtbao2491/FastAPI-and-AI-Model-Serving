@@ -11,7 +11,14 @@ class PredictionRequest(BaseModel):
     legal_status: str = Field(..., examples=["Contract"], description="Tình trạng pháp lý")
     distance_to_center: int = Field(..., examples=[10], description="Khoảng cách đến trung tâm (km)")
     
+    
 
 class PredictionResponse(BaseModel):
     features: dict
     price: float = Field(..., examples=[133232.33], description="Giá nhà dự đoán")
+
+class PredictionSummaryResponse(BaseModel):
+    average_price: float = Field(..., examples=[133232.33], description="Giá nhà trung bình dự đoán")
+    min_price: float = Field(..., examples=[100000.00], description="Giá nhà thấp nhất dự đoán")
+    max_price: float = Field(..., examples=[150000.00], description="Giá nhà cao nhất dự đoán")
+    predictions: list[dict]  
